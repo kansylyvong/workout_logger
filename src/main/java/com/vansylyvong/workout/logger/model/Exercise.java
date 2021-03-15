@@ -15,7 +15,7 @@ public class Exercise {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCE_EX")
     @SequenceGenerator(name="SEQUENCE_EX", sequenceName="SEQ_EXERCISES", allocationSize=1)
     @Column(name="exercise_pk")
-    private long exercisePk;
+    private Long exercisePk;
     @Column(name="exercise_name", nullable = false, unique = true)
     private String exerciseName;
     @Column(name="exercise_desc")
@@ -94,7 +94,7 @@ public class Exercise {
         return exercisePk;
     }
 
-    public void setExercisePk(long exercisePk) {
+    public void setExercisePk(Long exercisePk) {
         this.exercisePk = exercisePk;
     }
 

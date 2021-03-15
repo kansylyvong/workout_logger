@@ -1,6 +1,8 @@
 package com.vansylyvong.workout.logger.service;
 
 import com.vansylyvong.workout.logger.model.*;
+import com.vansylyvong.workout.logger.repositories.ExerciseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.persistence.*;
 import java.util.List;
@@ -8,20 +10,14 @@ import java.util.List;
 @Service
 public class ExerciseService {
 
+    @Autowired
+    ExerciseRepository exRepo;
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
 
-     public Exercise getExercise(long exercisePk) {
-         Exercise exercise = em.find(Exercise.class,exercisePk);
-         System.out.println("Exercise_name: " + exercise.getExerciseName());
-         return exercise;
-     }
      public Exercise getExerciseByName(String exerciseName) {
-         Query query = em.createQuery("select ex from Exercise ex where ex.exerciseName = ?1");
-         query.setParameter(1,exerciseName);
-         System.out.print(query);
-         Exercise exercise = (Exercise) query.getSingleResult();
+         Exercise exercise = exRepo.findByName(exerciseName);
          return exercise;
      }
      public Category getCategoryByName(String categoryName) {
