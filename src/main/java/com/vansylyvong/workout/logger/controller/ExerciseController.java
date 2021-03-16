@@ -23,7 +23,7 @@ public class ExerciseController {
         return exerciseService.getExerciseByName(ename);
     }
 
-    @PostMapping("/exercise")
+   /* @PostMapping("/exercise")
     public Exercise addExercise(@RequestParam(value="exercise_name") String ename,
                                 @RequestParam(value="category_name") String catName,
                                 @RequestParam(value="exercise_desc") String exerDesc,
@@ -52,5 +52,5 @@ public class ExerciseController {
                                   @RequestParam(value="eq_desc") String eqDesc,
                                   @RequestParam(value="eq_cat_pk") long eqCatPk) {
         return exerciseService.addEquipment(eqName,eqDesc,eqCatPk);
-    }
+    } */
 }

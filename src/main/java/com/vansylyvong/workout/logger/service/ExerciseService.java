@@ -12,15 +12,12 @@ public class ExerciseService {
 
     @Autowired
     ExerciseRepository exRepo;
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPU");
-    private EntityManager em = emf.createEntityManager();
-    private EntityTransaction tx = em.getTransaction();
 
      public Exercise getExerciseByName(String exerciseName) {
          Exercise exercise = exRepo.findByName(exerciseName);
          return exercise;
      }
-     public Category getCategoryByName(String categoryName) {
+    /* public Category getCategoryByName(String categoryName) {
          Query query = em.createQuery("select cat from Category cat where cat.categoryName = ?1");
          query.setParameter(1,categoryName);
          System.out.print(query);
@@ -65,7 +62,6 @@ public class ExerciseService {
                                  String muscleGroupName,
                                  String bodyPartName,
                                  int exerciseDuration) {
-         tx.begin();
          Exercise exercise = new Exercise();
          exercise.setExerciseName(exerciseName);
          exercise.setExerciseDesc(exerciseDesc);
@@ -86,8 +82,6 @@ public class ExerciseService {
          Category category = getCategoryByName(categoryName);
          exercise.setCategory(category);
          System.out.println(exercise.getExerciseName() + ' ' + exercise.getExerciseDesc());
-         em.persist(exercise);
-         tx.commit();
          return exercise;
 
      }
@@ -112,5 +106,5 @@ public class ExerciseService {
          em.persist(equipment);
          tx.commit();
          return equipment;
-    }
+    } */
 }

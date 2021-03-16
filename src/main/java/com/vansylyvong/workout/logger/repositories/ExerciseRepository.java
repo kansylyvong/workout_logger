@@ -1,6 +1,7 @@
 package com.vansylyvong.workout.logger.repositories;
 
 import com.vansylyvong.workout.logger.model.Exercise;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,9 @@ import javax.persistence.Query;
 public class ExerciseRepository {
     @PersistenceContext
     private EntityManager em;
+
+    @Autowired
+    ExerciseJpaRepository jpaRepository;
 
     public Exercise create(Exercise exercise) {
         em.persist(em);
@@ -23,11 +27,7 @@ public class ExerciseRepository {
         return exercise;
     }
     public Exercise findByName(String exerciseName) {
-        Query query = em.createQuery("select ex from Exercise ex where ex.exerciseName = ?1");
-        query.setParameter(1,exerciseName);
-        System.out.print(query);
-        Exercise exercise = (Exercise) query.getSingleResult();
-        return exercise;
+        return jpaRepository.findByExerciseName(exerciseName);
     }
 
 }
