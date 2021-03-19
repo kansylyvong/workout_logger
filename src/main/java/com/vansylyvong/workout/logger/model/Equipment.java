@@ -1,11 +1,12 @@
 package com.vansylyvong.workout.logger.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Equipment {
+public class Equipment implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCE_EQ")
     @SequenceGenerator(name="SEQUENCE_EQ", sequenceName="SEQ_EQUIPMENT", allocationSize=1)

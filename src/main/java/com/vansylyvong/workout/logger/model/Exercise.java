@@ -1,10 +1,11 @@
 package com.vansylyvong.workout.logger.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="exercises")
-public class Exercise {
+public class Exercise implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCE_EX")
     @SequenceGenerator(name="SEQUENCE_EX", sequenceName="SEQ_EXERCISES", allocationSize=1)
@@ -84,7 +85,7 @@ public class Exercise {
         this.exerciseDuration = exerciseDuration;
     }
 
-    public long getExercisePk() {
+    public Long getExercisePk() {
         return exercisePk;
     }
 

@@ -1,12 +1,13 @@
 package com.vansylyvong.workout.logger.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="body_parts")
-public class BodyPart {
+public class BodyPart implements Serializable {
     @Id
     @Column(name="body_part_pk")
     private long bodyPartPk;

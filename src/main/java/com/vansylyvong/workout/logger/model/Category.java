@@ -1,12 +1,13 @@
 package com.vansylyvong.workout.logger.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="exercise_category")
-public class Category {
+public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCE_CAT")
     @SequenceGenerator(name="SEQUENCE_CAT", sequenceName="SEQ_EXERCISE_CATEGORY", allocationSize=1)
@@ -23,7 +24,7 @@ public class Category {
     }
 
     public Long getCategoryPk() {
-        return categoryPk;
+        return this.categoryPk;
     }
 
     public void setCategoryPk(Long categoryPk) {
@@ -31,7 +32,7 @@ public class Category {
     }
 
     public String getCategoryName() {
-        return categoryName;
+        return this.categoryName;
     }
 
     public void setCategoryName(String categoryName) {
@@ -39,7 +40,7 @@ public class Category {
     }
 
     public String getSubcategoryName() {
-        return subcategoryName;
+        return this.subcategoryName;
     }
 
     public void setSubcategoryName(String subcategoryName) {
@@ -47,7 +48,7 @@ public class Category {
     }
 
     public String getMicrocategoryName() {
-        return microcategoryName;
+        return this.microcategoryName;
     }
 
     public void setMicrocategoryName(String microcategoryName) {

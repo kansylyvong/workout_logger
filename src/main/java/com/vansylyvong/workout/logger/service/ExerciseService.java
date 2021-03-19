@@ -53,9 +53,7 @@ public class ExerciseService {
         Category category = catRepo.getOne(categoryPk);
         exercise.setCategory(category);
         System.out.println(exercise.getExerciseName() + ' ' + exercise.getExerciseDesc());
-        exRepo.save(exercise);
-        return exercise;
-
+        return exRepo.save(exercise);
     }
     /* public Category getCategoryByName(String categoryName) {
          Query query = em.createQuery("select cat from Category cat where cat.categoryName = ?1");

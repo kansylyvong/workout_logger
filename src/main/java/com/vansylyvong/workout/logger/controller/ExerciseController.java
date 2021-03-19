@@ -22,6 +22,19 @@ public class ExerciseController {
     public Exercise getExercise(@RequestParam(value="exercise_name", defaultValue ="push-ups") String ename) {
         return exerciseService.getExerciseByName(ename);
     }
+    @PostMapping("/exercise")
+    public Exercise addExercise(@RequestParam(value="exercise_name") String ename,
+                                @RequestParam(value="category_pk") Long catName,
+                                @RequestParam(value="exercise_desc") String exerDesc,
+                                @RequestParam(value="equipment_pk") Long eqName,
+                                @RequestParam(value="muscle_pk") Long muscleName,
+                                @RequestParam(value="muscle_group_pk") Long muscGrpName,
+                                @RequestParam(value="body_part_pk") Long bodyPartName,
+                                @RequestParam(value="exercise_duration") int exercise_duration
+                                ) {
+
+        return exerciseService.addExercise(ename,catName,exerDesc,eqName,muscleName,muscGrpName,bodyPartName,exercise_duration);
+    }
 
    /* @PostMapping("/exercise")
     public Exercise addExercise(@RequestParam(value="exercise_name") String ename,
