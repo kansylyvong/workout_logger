@@ -17,6 +17,37 @@ public class ExerciseService {
          Exercise exercise = exRepo.findByName(exerciseName);
          return exercise;
      }
+    public Exercise addExercise(String exerciseName,
+                                String categoryName,
+                                String exerciseDesc,
+                                String equipmentName,
+                                String muscleName,
+                                String muscleGroupName,
+                                String bodyPartName,
+                                int exerciseDuration) {
+        Exercise exercise = new Exercise();
+        exercise.setExerciseName(exerciseName);
+        exercise.setExerciseDesc(exerciseDesc);
+        exercise.setExerciseDuration(exerciseDuration);
+
+        Equipment equipment = getEquipmentByName(equipmentName);
+        exercise.setEquipment(equipment);
+
+        Muscles muscle = getMuscleByName(muscleName);
+        exercise.setMuscle(muscle);
+
+        MuscleGroups muscleGroups = getMuscleGroupByName(muscleGroupName);
+        exercise.setMuscleGroup(muscleGroups);
+
+        BodyParts bodyPart = getBodyPartByName(bodyPartName);
+        exercise.setBodyPart(bodyPart);
+
+        Category category = getCategoryByName(categoryName);
+        exercise.setCategory(category);
+        System.out.println(exercise.getExerciseName() + ' ' + exercise.getExerciseDesc());
+        return exercise;
+
+    }
     /* public Category getCategoryByName(String categoryName) {
          Query query = em.createQuery("select cat from Category cat where cat.categoryName = ?1");
          query.setParameter(1,categoryName);
@@ -54,37 +85,7 @@ public class ExerciseService {
         BodyParts bodyPart = (BodyParts) query.getSingleResult();
         return bodyPart;
     }
-     public Exercise addExercise(String exerciseName,
-                                 String categoryName,
-                                 String exerciseDesc,
-                                 String equipmentName,
-                                 String muscleName,
-                                 String muscleGroupName,
-                                 String bodyPartName,
-                                 int exerciseDuration) {
-         Exercise exercise = new Exercise();
-         exercise.setExerciseName(exerciseName);
-         exercise.setExerciseDesc(exerciseDesc);
-         exercise.setExerciseDuration(exerciseDuration);
 
-         Equipment equipment = getEquipmentByName(equipmentName);
-         exercise.setEquipment(equipment);
-
-         Muscles muscle = getMuscleByName(muscleName);
-         exercise.setMuscle(muscle);
-
-         MuscleGroups muscleGroups = getMuscleGroupByName(muscleGroupName);
-         exercise.setMuscleGroup(muscleGroups);
-
-         BodyParts bodyPart = getBodyPartByName(bodyPartName);
-         exercise.setBodyPart(bodyPart);
-
-         Category category = getCategoryByName(categoryName);
-         exercise.setCategory(category);
-         System.out.println(exercise.getExerciseName() + ' ' + exercise.getExerciseDesc());
-         return exercise;
-
-     }
     public Category addCategory(String categoryName, String subCatName, String micCatName) {
          Category category = new Category();
          tx.begin();
