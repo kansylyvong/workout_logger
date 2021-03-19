@@ -1,50 +1,59 @@
 package com.vansylyvong.workout.logger.service;
 
 import com.vansylyvong.workout.logger.model.*;
-import com.vansylyvong.workout.logger.repositories.ExerciseRepository;
+import com.vansylyvong.workout.logger.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.persistence.*;
-import java.util.List;
 
 @Service
 public class ExerciseService {
 
     @Autowired
-    ExerciseRepository exRepo;
+    ExerciseJpaRepository exRepo;
+    @Autowired
+    CategoryJpaRepository catRepo;
+    @Autowired
+    MuscleJpaRepository muscRepo;
+    @Autowired
+    EquipmentJpaRepository eqRepo;
+    @Autowired
+    MuscleGroupJpaRepository muscGpRepo;
+    @Autowired
+    BodyPartJpaRepository bpRepo;
 
      public Exercise getExerciseByName(String exerciseName) {
-         Exercise exercise = exRepo.findByName(exerciseName);
+         Exercise exercise = exRepo.findByExerciseName(exerciseName);
          return exercise;
      }
     public Exercise addExercise(String exerciseName,
-                                String categoryName,
+                                Long categoryPk,
                                 String exerciseDesc,
-                                String equipmentName,
-                                String muscleName,
-                                String muscleGroupName,
-                                String bodyPartName,
+                                Long equipmentPk,
+                                Long musclePk,
+                                Long muscleGroupPk,
+                                Long bodyPartPk,
                                 int exerciseDuration) {
         Exercise exercise = new Exercise();
         exercise.setExerciseName(exerciseName);
         exercise.setExerciseDesc(exerciseDesc);
         exercise.setExerciseDuration(exerciseDuration);
 
-        Equipment equipment = getEquipmentByName(equipmentName);
+        Equipment equipment = eqRepo.getOne(equipmentPk);
         exercise.setEquipment(equipment);
 
-        Muscles muscle = getMuscleByName(muscleName);
+        Muscle muscle = muscRepo.getOne(musclePk);
         exercise.setMuscle(muscle);
 
-        MuscleGroups muscleGroups = getMuscleGroupByName(muscleGroupName);
-        exercise.setMuscleGroup(muscleGroups);
+        MuscleGroup muscleGroup = muscGpRepo.getOne(muscleGroupPk);
+        exercise.setMuscleGroup(muscleGroup);
 
-        BodyParts bodyPart = getBodyPartByName(bodyPartName);
+        BodyPart bodyPart = bpRepo.getOne(bodyPartPk);
         exercise.setBodyPart(bodyPart);
 
-        Category category = getCategoryByName(categoryName);
+        Category category = catRepo.getOne(categoryPk);
         exercise.setCategory(category);
         System.out.println(exercise.getExerciseName() + ' ' + exercise.getExerciseDesc());
+        exRepo.save(exercise);
         return exercise;
 
     }
@@ -67,22 +76,22 @@ public class ExerciseService {
         Equipment equipment = (Equipment) query.getSingleResult();
         return equipment;
     }
-    public Muscles getMuscleByName(String muscleName) {
-        Query query = em.createQuery("select mus from Muscles mus where mus.muscleName = ?1");
+    public Muscle getMuscleByName(String muscleName) {
+        Query query = em.createQuery("select mus from Muscle mus where mus.muscleName = ?1");
         query.setParameter(1,muscleName);
-        Muscles muscle = (Muscles) query.getSingleResult();
+        Muscle muscle = (Muscle) query.getSingleResult();
         return muscle;
     }
-    public MuscleGroups getMuscleGroupByName(String muscleGroupName) {
-        Query query = em.createQuery("select musg from MuscleGroups musg where musg.muscleGroupName = ?1");
+    public MuscleGroup getMuscleGroupByName(String muscleGroupName) {
+        Query query = em.createQuery("select musg from MuscleGroup musg where musg.muscleGroupName = ?1");
         query.setParameter(1,muscleGroupName);
-        MuscleGroups muscleGroups = (MuscleGroups) query.getSingleResult();
+        MuscleGroup muscleGroups = (MuscleGroup) query.getSingleResult();
         return muscleGroups;
     }
-    public BodyParts getBodyPartByName(String bodyPartName) {
-        Query query = em.createQuery("select bp from BodyParts bp where bp.bodyPartName = ?1");
+    public BodyPart getBodyPartByName(String bodyPartName) {
+        Query query = em.createQuery("select bp from BodyPart bp where bp.bodyPartName = ?1");
         query.setParameter(1,bodyPartName);
-        BodyParts bodyPart = (BodyParts) query.getSingleResult();
+        BodyPart bodyPart = (BodyPart) query.getSingleResult();
         return bodyPart;
     }
 

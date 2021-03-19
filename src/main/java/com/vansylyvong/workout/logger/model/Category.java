@@ -11,7 +11,7 @@ public class Category {
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCE_CAT")
     @SequenceGenerator(name="SEQUENCE_CAT", sequenceName="SEQ_EXERCISE_CATEGORY", allocationSize=1)
     @Column(name="category_pk")
-    private long categoryPk;
+    private Long categoryPk;
     @Column(name="category_name")
     private String categoryName;
     @Column(name="subcategory_name")
@@ -22,11 +22,11 @@ public class Category {
     public Category() {
     }
 
-    public long getCategoryPk() {
+    public Long getCategoryPk() {
         return categoryPk;
     }
 
-    public void setCategoryPk(long categoryPk) {
+    public void setCategoryPk(Long categoryPk) {
         this.categoryPk = categoryPk;
     }
 

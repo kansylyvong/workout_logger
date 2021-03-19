@@ -6,10 +6,10 @@ import java.util.Set;
 
 @Entity
 @Table(name="muscles")
-public class Muscles {
+public class Muscle {
     @Id
     @Column(name="muscle_pk")
-    private long musclePk;
+    private Long musclePk;
     @Column(name="muscle_name")
     private String muscleName;
     @Transient
@@ -17,13 +17,13 @@ public class Muscles {
     @Transient
     private String bodyPartName;
 
-    public Muscles() {}
+    public Muscle() {}
 
-    public long getMusclePk() {
+    public Long getMusclePk() {
         return musclePk;
     }
 
-    public void setMusclePk(long musclePk) {
+    public void setMusclePk(Long musclePk) {
         this.musclePk = musclePk;
     }
 

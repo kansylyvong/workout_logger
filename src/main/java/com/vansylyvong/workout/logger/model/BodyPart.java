@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="body_parts")
-public class BodyParts {
+public class BodyPart {
     @Id
     @Column(name="body_part_pk")
     private long bodyPartPk;
@@ -14,7 +14,7 @@ public class BodyParts {
     @Column(name="body_part_name")
     private String bodyPartName;
 
-    public BodyParts(){}
+    public BodyPart(){}
 
     public long getBodyPartPk() {
         return bodyPartPk;

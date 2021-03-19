@@ -6,27 +6,27 @@ import java.util.Set;
 
 @Entity
 @Table(name="muscle_groups")
-public class MuscleGroups {
+public class MuscleGroup {
     @Id
     @Column(name="muscle_group_pk")
-    private long muscleGroupPk;
+    private Long muscleGroupPk;
     @Column(name="muscle_group_name")
     private String muscleGroupName;
 
     @Transient
     private String bodyPartName;
 
-    public MuscleGroups() {
+    public MuscleGroup() {
 
     }
    // public String getBodyPartName() {
    //     return 'BodyPartName';
    // }
-    public long getMuscleGroupPk() {
+    public Long getMuscleGroupPk() {
         return muscleGroupPk;
     }
 
-    public void setMuscleGroupPk(long muscleGroupPk) {
+    public void setMuscleGroupPk(Long muscleGroupPk) {
         this.muscleGroupPk = muscleGroupPk;
     }
 

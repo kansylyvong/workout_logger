@@ -1,12 +1,6 @@
 package com.vansylyvong.workout.logger.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
-import java.net.http.HttpResponse;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name="exercises")
@@ -28,41 +22,41 @@ public class Exercise {
     private Category category;
     @ManyToOne
     @JoinColumn(name="muscle_pk")
-    private Muscles muscle;
+    private Muscle muscle;
     @ManyToOne
     @JoinColumn(name="equipment_pk")
     private Equipment equipment;
     @ManyToOne
     @JoinColumn(name="muscle_group_pk")
-    private MuscleGroups muscleGroups;
+    private MuscleGroup muscleGroup;
     @ManyToOne
     @JoinColumn(name="body_part_pk")
-    private BodyParts bodyParts;
+    private BodyPart bodyPart;
 
 
-    public BodyParts getBodyPart() {
-        return this.bodyParts;
+    public BodyPart getBodyPart() {
+        return this.bodyPart;
     }
-    public MuscleGroups getMuscleGroup() {
-        return this.muscleGroups;
+    public MuscleGroup getMuscleGroup() {
+        return this.muscleGroup;
     }
 
     public Equipment getEquipment() {
         return this.equipment;
     }
 
-    public Muscles getMuscle() {
+    public Muscle getMuscle() {
         return this.muscle;
     }
     public Category getCategory() {
         return this.category;
     }
 
-    public void setMuscleGroup(MuscleGroups muscleGroups) {
-        this.muscleGroups = muscleGroups;
+    public void setMuscleGroup(MuscleGroup muscleGroup) {
+        this.muscleGroup = muscleGroup;
     }
 
-    public void setMuscle(Muscles muscle) {
+    public void setMuscle(Muscle muscle) {
         this.muscle = muscle;
     }
 
@@ -74,8 +68,8 @@ public class Exercise {
         this.equipment = equipment;
     }
 
-    public void setBodyPart(BodyParts bodyParts) {
-        this.bodyParts = bodyParts;
+    public void setBodyPart(BodyPart bodyPart) {
+        this.bodyPart = bodyPart;
     }
 
     public Exercise() {
