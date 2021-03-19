@@ -1,10 +1,13 @@
 package com.vansylyvong.workout.logger.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name="exercises")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Exercise implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQUENCE_EX")
